@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <title>@ViewBag.Title</title>
+    <title>@ViewBag.Title</title>
+  
+</head>
+<body>
+    <div class="navbar navbar-form" style="background-image: url('../../images/img1 (2).jpg');padding-bottom:60px;padding-top:30px;margin-top:0px;margin-bottom:0px;">
+        <a class="navbar-brand" href="/Admin/index">
+            <span class="btn-lg" style="font-family:'Agency FB'; font-size:xx-large; color:white;">Town Manager</span>
+            <div class="visible-xs">Town</div>
+            <div class="visible-xs">Manager</div>
+        </a>
+    </div>
+   
+
+
+
+
+    <div>
+        @if (TempData["message"] != null)
+        {
+            <div class="alert alert-success">@TempData["message"]</div>
+        }
+        @RenderBody()
+    </div>
+</body>
+</html>

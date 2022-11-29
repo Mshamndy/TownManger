@@ -1,0 +1,115 @@
+﻿@model TownManger.Domain.Entities.Building
+
+@{
+    ViewBag.Title = "EditBuilding";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="panel">
+    @if (Model.BuildingID == 0)
+    {
+        <div class="panel-heading">
+
+            <h3>Create New Building</h3>
+
+        </div>
+
+
+
+
+     using (Html.BeginForm("EditBuilding", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+     {
+     <div class="panel-body">
+          <div class="form-group">
+
+               @Html.HiddenFor(m => m.BuildingID)
+                    @*@Html.ValidationSummary()*@
+                    <div class="form-group">
+                        <label>Building Name :</label>
+                        @Html.TextBoxFor(m => m.BuildingName, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label>Floor Numbers:</label>
+                        @Html.TextBoxFor(m => m.FloorNumbers, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label>Number Of Units for each floor:</label>
+                        @Html.TextBoxFor(m => m.UnitNumberFloor, new { @class = "form-control" })
+                    </div>
+          </div>
+
+     </div>
+     <div class="panel-footer">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                @Html.ActionLink("Cancel and return to List", "BuildingIndex", null, new { @class = "btn btn-default" })
+
+     </div>
+     }
+
+
+
+
+
+  }
+    else
+    {
+        <div class="panel-heading">
+
+            <h3>Edit Building @Model.BuildingName</h3>
+
+        </div>
+
+
+
+
+        using (Html.BeginForm("EditBuilding", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="panel-body">
+                <div class="form-group">
+
+                    @Html.HiddenFor(m => m.BuildingID)
+                    @*@Html.ValidationSummary()*@
+                    <div class="form-group">
+                        <label>Building Name :</label>
+                        @Html.TextBoxFor(m => m.BuildingName, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label>Floor Numbers:</label>
+                        @Html.TextBoxFor(m => m.FloorNumbers, new { @class = "form-control" , @disabled = "disabled" })
+                    </div>
+                    <div class="form-group">
+                        <label>Number Of Units for each floor:</label>
+                        @Html.TextBoxFor(m => m.UnitNumberFloor, new { @class = "form-control", @disabled = "disabled" })
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+
+            <div class="panel-footer">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                @Html.ActionLink("Cancel and return to List", "BuildingIndex", null, new { @class = "btn btn-default" })
+
+            </div>
+        }
+
+
+    }
+
+
+</div>
+
+

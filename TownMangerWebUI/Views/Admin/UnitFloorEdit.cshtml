@@ -1,0 +1,50 @@
+﻿@model TownManger.Domain.Entities.Unit
+
+@{
+    ViewBag.Title = "UnitFloorEdit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="panel-heading">
+    <h2>Edit Units</h2>
+</div>
+
+
+<div class="panel">
+
+    @using (Html.BeginForm("UnitFloorEdit", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="panel-body">
+            <div class="form-group">
+
+                @Html.HiddenFor(m => m.FloorID)
+                @Html.HiddenFor(m => m.UnitID)
+
+                @*@Html.ValidationSummary()*@
+                <div class="form-group">
+                    <label>Unit Number :</label>
+                    @Html.TextBoxFor(m => m.UnitNumber, new { @class = "form-control"});
+                </div>
+
+                <div class="form-group">
+                    <label>Building Name :</label>
+                    @Html.TextBoxFor(m => m.BuildingID, new { @class = "form-control", @disabled = "disabled" })
+                </div>
+                <div class="form-group">
+                    <label>Family Name :</label>
+                    @Html.TextBoxFor(m => m.FamilyID, new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="panel-footer">
+            <input type="submit" value="Save" class="btn btn-primary" />
+            @Html.ActionLink("Cancel", "UnitFloorIndex", new { Model.FloorID }, new { @class = "btn btn-default" })
+
+        </div>
+    }
+</div>
+

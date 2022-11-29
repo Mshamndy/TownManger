@@ -1,0 +1,18 @@
+﻿@model TownManger.Domain.Entities.Floor
+
+
+@using (Html.BeginForm("EditFloorUnits", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{ 
+
+<tr>
+        @Html.HiddenFor(m => m.FloorID)
+    <td>@Html.TextBoxFor(m => Model.FloorName)</td>
+    <td>@Html.TextBoxFor(m => Model.UnitNumbers)</td>
+    <td>
+        <input type="submit"
+               class="btn btn-default btn-xs"
+               value="Save" />
+    </td>
+
+</tr>
+}

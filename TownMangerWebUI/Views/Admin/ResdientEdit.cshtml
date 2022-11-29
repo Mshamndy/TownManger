@@ -1,0 +1,159 @@
+﻿@model TownManger.Domain.Entities.Resdient
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="panel">
+    <div class="panel-heading">
+        @if (Model.ResdientID == 0)
+        {
+            <h3>Create New Resdient</h3>
+
+        }
+        else
+        {
+            <h3>Edit @Model.ResdientName</h3>
+
+        }
+
+
+
+
+    </div>
+    @using (Html.BeginForm("ResdientEdit", "Admin",FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+    <div class="panel-body">
+        @Html.HiddenFor(m => m.ResdientID)
+        <div class="form-group">
+            <label>National ID :</label>
+            @Html.TextBoxFor(m => m.NID, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Full Name:</label>
+            @Html.TextBoxFor(m => m.ResdientName, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Mobile:</label>
+            @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>FamilyRelationship:</label>
+            @Html.TextBoxFor(m => m.FamilyRelationship, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Car Number:</label>
+            @Html.TextBoxFor(m => m.CarNumber, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label>Building Name:</label>
+           
+                @Html.DropDownList("BuildingID",null, "---Select Building---",  htmlAttributes: new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+
+            <label>Floor Number:</label>
+            @Html.DropDownList("FloorID", null, "---Select Floor---", htmlAttributes: new { @class = "form-control" })
+
+        </div>
+        <div class="form-group">
+            <label>Unit Number:</label>
+            @Html.DropDownList("UnitID", null, "---Select Unit---", htmlAttributes: new { @class = "form-control" })
+
+        </div>
+
+        <div class="form-group">
+            <div style="position:relative;">
+                <label>Image</label>
+                <a class='btn btn alert-warning' href='javascript:; '>
+                    Choose File...
+                    <input type="file" name="Image" id="select" size="40"
+                           style="position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0); opacity:0;background-color:transparent;color:transparent;">
+                </a>
+                <span class='label label-info' id="upload-file-info"></span>
+            </div>
+            @if (Model.ImageData == null)
+            {
+                <img class="img-thumbnail" width="150" height="150" id=" imaged"
+                     src="~/images/noImage.jpg" />
+            }
+            else
+            {
+                <img class="img-thumbnail" width="150" height="150" id=" imaged"
+                     src="@Url.Action("GetImage", "Resdient",new { Model.ResdientID })" />
+            }
+        </div>
+
+
+
+
+
+    </div>
+        <div class="panel-footer">
+            <input type="submit" value="Save" class="btn btn-primary" />
+            @Html.ActionLink("Cancel and return to List", "Index", null, new {
+            @class = "btn btn-default"
+            })
+        </div>
+    }
+</div>
+
+<script>
+  
+    $(document).ready(function () {
+
+       
+
+
+            $("#BuildingID").change(
+
+
+                function () {
+                   
+                
+                $.get("/Admin/GetFloorBuildingDrop", { buildingID: $("#BuildingID").val() }, function (data) {
+                    $("#FloorID").empty();
+                    $.each(data, function (index, row) {
+                        $("#FloorID").append("<option value='" + row.Value + "'>" + row.Text + "</option>")
+                        $("#FloorID").val("Select")
+              
+                        
+                        
+                    });
+
+                    
+                   
+                });
+
+            })
+        });
+
+
+     $(document).ready(function () {
+        $("#FloorID").change(function () {
+            $.get("/Admin/GetUnitFloorDrop", { floorID: $("#FloorID").val() }, function (data) {
+                $("#UnitID").empty();
+                $.each(data, function (index, row) {
+                    $("#UnitID").append("<option value='" + row.Value + "'>" + row.Text + "</option>")
+                    $("#UnitID").val("Select")
+
+                });
+            });
+        })
+    });
+
+
+           
+
+    
+  
+
+   
+    
+</script>
+        
+        
+        
+       

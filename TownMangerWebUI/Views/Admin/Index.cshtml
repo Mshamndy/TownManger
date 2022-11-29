@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="row panel">
+    @Html.RouteLink("Create Buildings", new { Controller = "admin", Action = "BuildingIndex" }, new { @class = "btn btn-block btn-default btn-lg" })
+    @Html.RouteLink("Create Building Units", new { Controller = "admin", Action = "CreateBuildingUnits" }, new { @class = "btn btn-block btn-default btn-lg" })
+    @Html.RouteLink("Design Units", new { Controller = "admin", Action = "BuildingManageIndex" }, new { @class = "btn btn-block btn-default btn-lg" })
+    @Html.RouteLink("Resdients", new { Controller = "admin", Action = "ResdientIndex" }, new { @class = "btn btn-block btn-default btn-lg" })
+
+    @Html.RouteLink("Register Resdient", new { Controller = "admin", Action = "CreateResdient" }, new { @class = "btn btn-block btn-default btn-lg" })
+    @Html.RouteLink("Register Family Members", new { Controller = "admin", Action = "CreateResdient" }, new { @class = "btn btn-block btn-default btn-lg" })
+
+</div>
+
+

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<TownManger.Domain.Entities.Floor>
+
+@{
+    ViewBag.Title = "FloorsIndexforBuilding";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Floors for Building @ViewBag.BuildingName</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-hover">
+            <tr>
+
+                <th class="text-center">Floor Name</th>
+                <th class="text-center">Unit Numbers</th>
+                <th class="text-center">Actions</th>
+            </tr>
+            @foreach (var p in Model)
+            {<tr>
+                @Html.HiddenFor(m=>p.FloorID)
+                <td class="text-center">@Html.Label(p.FloorName)</td>
+                <td class="text-center" style="font-size:larger">@Html.Label(p.UnitNumbers.ToString())</td>
+                <td class="text-center">
+                 @Html.ActionLink("Edit", "EditFloorUnits", new{p.FloorID},
+                        new { @class = "btn btn-default" })
+
+                </td>
+
+</tr>
+            }
+        </table>
+    </div>
+    <div class="panel-footer">
+        @Html.ActionLink("Back", "BuildingIndex", null,
+        new { @class = "btn btn-default" })
+    </div>
+
+
+</div>

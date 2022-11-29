@@ -1,0 +1,36 @@
+﻿@model TownManger.Domain.Entities.Resdient
+
+<div class="well" >
+    @if (Model.ImageData != null)
+    {
+        <div class="pull-left" style="margin-right: 10px">
+                <img class="img-thumbnail" width="75" height="75"
+                     src="@Url.Action("GetImage", "Admin",new { Model.ResdientID })" />
+            </div>
+    }
+    <h3>
+        <strong>@Model.ResdientName</strong>
+        <span class="pull-right">
+            @Html.ActionLink("  Edit  ", "ResdientEdit", new { Model.ResdientID }, new { @class = "btn btn-success" })
+        </span>
+
+    </h3>
+
+
+   
+    <div class="pull-right">
+
+        @using (Html.BeginForm("Delete", "Admin"))
+        {
+            @Html.Hidden("resdientID", Model.ResdientID)
+            <input type="submit"
+                   class="btn btn-danger"
+                   value="Delete" />
+        }
+    </div>
+
+    <span class=" label label-primary"style="font-size:15px">Building  @Model.BuildingID</span>
+ 
+    <span class=" label label-primary"style="font-size:15px">Unit Number : @Model.UnitID</span>
+
+</div>
